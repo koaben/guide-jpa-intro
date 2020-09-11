@@ -35,6 +35,7 @@ public class EventEntityIT extends EventIT {
     private static final String JSONFIELD_TIME = "time";
     private static final String EVENT_TIME = "12:00 PM, January 1 2018";
     private static final String EVENT_LOCATION = "IBM";
+    private static final String EVENT_OPTION = "check";
     private static final String EVENT_NAME = "JPA Guide";
     private static final String UPDATE_EVENT_TIME = "12:00 PM, February 1 2018";
     private static final String UPDATE_EVENT_LOCATION = "IBM Updated";
@@ -97,7 +98,7 @@ public class EventEntityIT extends EventIT {
         assertEquals(NO_CONTENT_CODE, postResponse,
           "Creating an event should return the HTTP reponse code " + NO_CONTENT_CODE);
 
-        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
+        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME,"start");
         JsonObject event = findEvent(e);
         event = getIndividualEvent(event.getInt("id"));
         assertData(event, EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
@@ -116,7 +117,7 @@ public class EventEntityIT extends EventIT {
         assertEquals(NO_CONTENT_CODE, postResponse, 
           "Creating an event should return the HTTP reponse code " + NO_CONTENT_CODE);
      
-        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
+        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME, EVENT_OPTION);
         JsonObject event = findEvent(e);
         assertData(event, EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
 
@@ -127,7 +128,7 @@ public class EventEntityIT extends EventIT {
         assertEquals(NO_CONTENT_CODE, updateResponse, 
           "Updating an event should return the HTTP response code " + NO_CONTENT_CODE);
         
-        e = new Event(UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME);
+        e = new Event(UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME, EVENT_OPTION);
         event = findEvent(e);
         assertData(event, UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME);
 

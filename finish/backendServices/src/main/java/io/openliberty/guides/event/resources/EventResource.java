@@ -57,7 +57,7 @@ public class EventResource {
     // end::Transactional[]
     public Response addNewEvent(@FormParam("name") String name,
         @FormParam("time") String time, @FormParam("location") String location) {
-        Event newEvent = new Event(name, location, time);
+        Event newEvent = new Event(name, location, time,"value_" +time);
         if(!eventDAO.findEvent(name, location, time).isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
                            .entity("Event already exists").build();
@@ -122,7 +122,8 @@ public class EventResource {
         Event event = eventDAO.readEvent(eventId);
         if(event != null) {
             builder.add("name", event.getName()).add("time", event.getTime())
-                .add("location", event.getLocation()).add("id", event.getId());
+                .add("location", event.getLocation()).add("id", event.getId()).add("option", event.getOption());
+
         }
         return builder.build();
     }
@@ -139,6 +140,7 @@ public class EventResource {
         for (Event event : eventDAO.readAllEvents()) {
             builder.add("name", event.getName()).add("time", event.getTime())
                    .add("location", event.getLocation()).add("id", event.getId());
+            builder.add("option",event.getOption());
             finalArray.add(builder.build());
         }
         return finalArray.build();

@@ -53,14 +53,24 @@ public class Event implements Serializable {
     private String time;
     @Column(name = "eventName")
     private String name;
-
+    @Column(name = "eventOption")
+    private String option;
     public Event() {
     }
 
-    public Event(String name, String location, String time) {
+    public Event(String name, String location, String time, String option) {
         this.name = name;
         this.location = location;
         this.time = time;
+        this.option = option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public String getOption() {
+        return option;
     }
 
     public int getId() {
