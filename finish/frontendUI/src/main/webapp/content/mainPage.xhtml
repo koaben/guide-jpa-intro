@@ -55,6 +55,10 @@
             #{event.getString("time")}
           </h:column>
           <h:column>
+            <f:facet name="header">optie</f:facet>
+            #{event.getString("option")}
+          </h:column>
+          <h:column>
             <f:facet name="header"></f:facet>
             <h:commandLink class="eventsLink" value="Update"
               action="#{eventBean.editEvent()}">
