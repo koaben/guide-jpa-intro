@@ -60,7 +60,7 @@ public interface EventClient {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void updateEvent(@FormParam("name") String name,
-        @FormParam("time") String time, @FormParam("location") String location, 
+        @FormParam("time") String time, @FormParam("location") String location, @FormParam("option") String option,
         @PathParam("id") int id) throws UnknownUrlException, BadRequestException;
 
 }

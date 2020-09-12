@@ -187,7 +187,7 @@ public class EventBean implements Serializable {
     public void submitUpdateToService() {
         String time = createStoredTime();
         try {
-            eventClient.updateEvent(this.name, time, this.location, this.selectedId);
+            eventClient.updateEvent(this.name, time, this.location, this.option, this.selectedId);
             pageDispatcher.showMainPage();
             clear();
         } catch (UnknownUrlException e) {

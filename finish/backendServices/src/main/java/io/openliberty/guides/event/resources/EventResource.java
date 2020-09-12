@@ -75,7 +75,7 @@ public class EventResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Transactional
     public Response updateEvent(@FormParam("name") String name,
-        @FormParam("time") String time, @FormParam("location") String location,
+        @FormParam("time") String time, @FormParam("location") String location,@FormParam("option") String option,
         @PathParam("id") int id) {
         Event prevEvent = eventDAO.readEvent(id);
         if(prevEvent == null) {
@@ -89,7 +89,7 @@ public class EventResource {
         prevEvent.setName(name);
         prevEvent.setLocation(location);
         prevEvent.setTime(time);
-
+        prevEvent.setOption(option);
         eventDAO.updateEvent(prevEvent);
         return Response.status(Response.Status.NO_CONTENT).build(); 
     }
