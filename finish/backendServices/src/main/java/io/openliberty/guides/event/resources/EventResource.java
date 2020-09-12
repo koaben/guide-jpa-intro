@@ -56,8 +56,8 @@ public class EventResource {
     @Transactional
     // end::Transactional[]
     public Response addNewEvent(@FormParam("name") String name,
-        @FormParam("time") String time, @FormParam("location") String location) {
-        Event newEvent = new Event(name, location, time,"value_" +time);
+        @FormParam("time") String time, @FormParam("location") String location, @FormParam("option") String option) {
+        Event newEvent = new Event(name, location, time, option);
         if(!eventDAO.findEvent(name, location, time).isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
                            .entity("Event already exists").build();

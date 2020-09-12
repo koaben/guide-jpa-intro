@@ -53,6 +53,7 @@ public class EventBean implements Serializable {
     private String month;
     private String year;
     private String hour;
+    private String option;
     private int selectedId;
     private boolean notValid;
     private ComponentSystemEvent currentComponent;
@@ -87,6 +88,14 @@ public class EventBean implements Serializable {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public String getOption() {
+        return option;
     }
 
     public String getName() {
@@ -158,7 +167,10 @@ public class EventBean implements Serializable {
     public void submitToService() {
         String time = createStoredTime();
         try {
-            eventClient.addEvent(name, time, location);
+            if (option==null) {
+                option = "NULL_VALUE";
+            }
+            eventClient.addEvent(name, time, location ,option);
             pageDispatcher.showMainPage();
             clear();
        } catch (UnknownUrlException e) { 
@@ -195,7 +207,7 @@ public class EventBean implements Serializable {
         this.name = event.getString("name");
         this.location = event.getString("location");
         this.selectedId = event.getInt("id");
-
+        this.option = event.getString("option");
         pageDispatcher.showEditPage();
     }
 

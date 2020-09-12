@@ -53,7 +53,7 @@ public interface EventClient {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void addEvent(@FormParam("name") String name,
-        @FormParam("time") String time, @FormParam("location") String location) throws 
+        @FormParam("time") String time, @FormParam("location") String location, @FormParam("option") String option ) throws
         UnknownUrlException, BadRequestException;
 
     @PUT
