@@ -55,14 +55,20 @@ public class Event implements Serializable {
     private String name;
     @Column(name = "eventOption")
     private String option;
+    @Column(name = "eventAttribute1")
+    private String attribute1;
+    @Column(name = "eventAttributeN")
+    private String attributeN;
     public Event() {
     }
 
-    public Event(String name, String location, String time, String option) {
+    public Event(String name, String location, String time, String option, String attribute1, String attributeN) {
         this.name = name;
         this.location = location;
         this.time = time;
         this.option = option;
+        this.attribute1 = attribute1;
+        this.attributeN = attributeN;
     }
 
     public void setOption(String option) {
@@ -159,6 +165,22 @@ public class Event implements Serializable {
     public String toString() {
         return "Event [name=" + name + ", location=" + location + ", time=" + time
                 + "]";
+    }
+
+    public String getAttribute1() {
+        return attribute1;
+    }
+
+    public String getAttributeN() {
+        return attributeN;
+    }
+
+    public void setAttribute1(String attribute1) {
+        this.attribute1 = attribute1;
+    }
+
+    public void setAttributeN(String attributeN) {
+        this.attributeN = attributeN;
     }
 }
 // end::Event[]

@@ -57,7 +57,7 @@ public class EventResource {
     // end::Transactional[]
     public Response addNewEvent(@FormParam("name") String name,
         @FormParam("time") String time, @FormParam("location") String location, @FormParam("option") String option) {
-        Event newEvent = new Event(name, location, time, option);
+        Event newEvent = new Event(name, location, time, option, "attribute1","attributeN");
         if(!eventDAO.findEvent(name, location, time).isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
                            .entity("Event already exists").build();
@@ -112,6 +112,7 @@ public class EventResource {
 
     /**
      * This method returns a specific existing/stored event in Json format
+     * -http://localhost:5050/events/1
      */
     @GET
     @Path("{id}")
@@ -122,7 +123,8 @@ public class EventResource {
         Event event = eventDAO.readEvent(eventId);
         if(event != null) {
             builder.add("name", event.getName()).add("time", event.getTime())
-                .add("location", event.getLocation()).add("id", event.getId()).add("option", event.getOption());
+                .add("location",
+                        event.getLocation()).add("id", event.getId()).add("option", event.getOption()).add("attribute1", event.getAttribute1()).add("attributeN", event.getAttributeN());
 
         }
         return builder.build();
@@ -130,6 +132,7 @@ public class EventResource {
 
     /**
      * This method returns the existing/stored events in Json format
+     * http://localhost:5050/events
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -141,6 +144,8 @@ public class EventResource {
             builder.add("name", event.getName()).add("time", event.getTime())
                    .add("location", event.getLocation()).add("id", event.getId());
             builder.add("option",event.getOption());
+            builder.add("attribute1", event.getAttribute1());
+            builder.add("attributeN", event.getAttributeN());
             finalArray.add(builder.build());
         }
         return finalArray.build();

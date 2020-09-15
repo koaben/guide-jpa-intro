@@ -20,7 +20,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.Response.Status;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.apache.cxf.jaxrs.provider.jsrjsonp.JsrJsonpProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -102,7 +101,7 @@ public class EventEntityIT extends EventIT {
       //  assertEquals(NO_CONTENT_CODE, postResponse,
        //   "Creating an event should return the HTTP reponse code " + NO_CONTENT_CODE);
 
-        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME,"start");
+        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME,"start","a1","aN");
         JsonObject event = findEvent(e);
         event = getIndividualEvent(event.getInt("id"));
         assertData(event, EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
@@ -121,7 +120,7 @@ public class EventEntityIT extends EventIT {
         assertEquals(NO_CONTENT_CODE, postResponse, 
           "Creating an event should return the HTTP reponse code " + NO_CONTENT_CODE);
      
-        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME, EVENT_OPTION);
+        Event e = new Event(EVENT_NAME, EVENT_LOCATION, EVENT_TIME, EVENT_OPTION,"a1","aN");
         JsonObject event = findEvent(e);
         assertData(event, EVENT_NAME, EVENT_LOCATION, EVENT_TIME);
 
@@ -132,7 +131,7 @@ public class EventEntityIT extends EventIT {
         assertEquals(NO_CONTENT_CODE, updateResponse, 
           "Updating an event should return the HTTP response code " + NO_CONTENT_CODE);
         
-        e = new Event(UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME, EVENT_OPTION);
+        e = new Event(UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME, EVENT_OPTION,"a1","aN");
         event = findEvent(e);
         assertData(event, UPDATE_EVENT_NAME, UPDATE_EVENT_LOCATION, UPDATE_EVENT_TIME);
 

@@ -38,25 +38,38 @@
           styleClass="event-table" headerClass="event-table-header"
           columnClasses="column1,column2,column3,column4,column5,column6"
           rendered="#{not empty eventBean.retrieveEventList()}">
+          <!--
           <h:column>
             <f:facet name="header">Event ID</f:facet>
             #{event.getInt("id")}
-          </h:column>
+          </h:column>Klantverklaringsoort
+Klantafspraaksoort
+Juridische ontvangstdatumtijd
+BTW-identificatienummer
+          -->
           <h:column>
-            <f:facet name="header">Name</f:facet>
+            <f:facet name="header">Klant verklaring soort</f:facet>
             #{event.getString("name")}
           </h:column>
           <h:column>
-            <f:facet name="header">Location</f:facet>
+            <f:facet name="header">Klant afspraak soort</f:facet>
             #{event.getString("location")}
           </h:column>
           <h:column>
-            <f:facet name="header">Time</f:facet>
+            <f:facet name="header">ontvangst datum/tijd</f:facet>
             #{event.getString("time")}
           </h:column>
           <h:column>
-            <f:facet name="header">optie</f:facet>
+            <f:facet name="header">BTWID</f:facet>
             #{event.getString("option")}
+          </h:column>
+          <h:column>
+            <f:facet name="header">attribute 1</f:facet>
+            #{event.getString("attribute1")}
+          </h:column>
+          <h:column>
+            <f:facet name="header">attribute N</f:facet>
+            #{event.getString("attributeN")}
           </h:column>
           <h:column>
             <f:facet name="header"></f:facet>
